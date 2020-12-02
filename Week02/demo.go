@@ -1,16 +1,14 @@
 package main
 
 import (
-	"errors"
+	"database/sql"
 	"fmt"
 	xerrors "github.com/pkg/errors"
 )
 
-var ErrNoRows = errors.New("no rows ")
-
 // 即使error是具有模糊界限的错误，也应该 warp 后返回给上层，由调用者决定是否是个错误
 func dao() error {
-	return xerrors.Wrap(ErrNoRows, "调用dao接口错误")
+	return xerrors.Wrap(sql.ErrNoRows, "调用dao接口错误")
 }
 
 // 抛给上层
